@@ -1,0 +1,331 @@
+.shots-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.shots-toolbar,
+.shots-filters,
+.shots-selection,
+.shot-preview-actions,
+.shots-pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.shots-toolbar .search {
+  margin-left: auto;
+  max-width: 260px;
+}
+.shots-panel select {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+}
+.shot-capture {
+  display: flex;
+  gap: 6px;
+}
+.shots-filters > .quiet {
+  margin-left: auto;
+}
+.shots-filters .segments {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 4px;
+}
+.shots-filters .segments button {
+  min-width: 64px;
+}
+.shots-selection {
+  flex-wrap: wrap;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.shots-selection input {
+  width: 130px;
+  padding: 8px 10px;
+}
+.shots-selection .secondary,
+.shots-selection .quiet {
+  padding: 8px 10px;
+  font-size: 12px;
+}
+.shots-selection-count {
+  font-size: 12px;
+  min-width: 60px;
+}
+.shots-category-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.shot-card.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue);
+}
+.shot-context-menu {
+  position: fixed;
+  z-index: 100;
+  width: 212px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 6px;
+  border-radius: 12px;
+  box-shadow: 0 12px 38px #0003;
+}
+.shot-context-menu button {
+  display: block;
+  width: 100%;
+  min-height: 37px;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+.shot-context-menu button:not(:disabled):hover,
+.shot-context-menu button:focus-visible {
+  background: var(--blue-soft);
+  color: var(--blue);
+  outline: 0;
+}
+.shot-context-menu button.danger {
+  color: var(--red);
+}
+.shot-menu-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 4px;
+}
+.shot-rename {
+  width: 380px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 24px;
+}
+.shot-rename::backdrop {
+  background: #080b12aa;
+}
+.shot-rename form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.shot-rename .row {
+  justify-content: flex-end;
+}
+.shots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.shot-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.shot-thumbnail {
+  width: 100%;
+  height: 166px;
+  padding: 12px;
+  border-radius: 0;
+  background: var(--panel-soft);
+  display: block;
+}
+.shot-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.shot-select {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  background: var(--panel);
+  border-radius: 7px;
+  box-shadow: 0 1px 5px #0002;
+}
+.shot-select input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+.shot-card-info {
+  padding: 12px 14px 8px;
+}
+.shot-card-info > strong {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  font-weight: 550;
+}
+.shot-card-info > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 4px;
+}
+.shot-card-info small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+.shots-empty {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: var(--muted);
+}
+.shots-empty h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.shots-pagination {
+  justify-content: center;
+  padding: 12px;
+}
+.shot-component-status {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+.shot-preview {
+  padding: 0;
+  width: min(1000px, 94vw);
+  max-height: 90vh;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 24px 100px #0005;
+}
+.shot-preview::backdrop {
+  background: #080b12aa;
+}
+.shot-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+}
+.shot-preview-header input {
+  flex: 1;
+  border-color: transparent;
+  background: transparent;
+}
+.shot-preview-image {
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(60vh, 650px);
+  padding: 16px;
+}
+.shot-preview-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.shot-preview-actions {
+  padding: 14px;
+  flex-wrap: wrap;
+}
+.shot-preview-actions small {
+  margin-right: auto;
+}
+.shot-preview-actions input {
+  width: 125px;
+  padding: 8px;
+}
+.danger {
+  color: var(--red);
+}
+.setting-switch {
+  appearance: none;
+  width: 40px;
+  height: 23px;
+  min-width: 40px;
+  border: 0;
+  border-radius: 15px;
+  padding: 0;
+  background: var(--line);
+  position: relative;
+  cursor: pointer;
+}
+.setting-switch::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  height: 17px;
+  width: 17px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.15s;
+  box-shadow: 0 1px 3px #0003;
+}
+.setting-switch:checked {
+  background: var(--blue);
+}
+.setting-switch:checked::after {
+  transform: translateX(17px);
+}
+.hotkey-setting {
+  align-items: flex-start;
+  gap: 14px;
+}
+.hotkey-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.hotkey-buttons {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.hotkey-buttons kbd {
+  font: inherit;
+  color: var(--muted);
+  padding: 7px 0;
+}
+.hotkey-recorder {
+  padding: 9px 12px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  border: 1px dashed var(--blue);
+  min-width: 130px;
+}
+@media (max-width: 1000px) {
+  .shot-shortcut {
+    display: none;
+  }
+  .shots-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

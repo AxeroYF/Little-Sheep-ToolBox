@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {chromium} from 'playwright';
+import {createApp} from '../server/app';
+import type {AppRuntime} from '../shared/app-runtime';
+const run=resolve('runtime/integrations-ui-'+Date.now());mkdirSync(run,{recursive:true});
+const origin='http://127.0.0.1:4349';let state:AppRuntime['state']='running',closes=0,launched=0;
+const app=await createApp({root:process.cwd(),databasePath:join(run,'test.sqlite'),dataDir:run,origin,host:'127.0.0.1',platform:'win32',launcher:async()=>{launched++;state='running'},appController:{list:async entries=>Object.fromEntries(entries.map(e=>[e.id,{state:e.id==='xiaoyang-computer'?state:'stopped',instances:e.id==='xiaoyang-computer'&&state==='running'?1:0,since:1,canClose:true,canShow:true}])),action:async(_e,a)=>{if(a==='close'){closes++;state='stopped'}return true},starting:()=>{},dispose:()=>{}}});
+await app.listen({host:'127.0.0.1',port:4349});
+const fixture=join(run,'文字.png');execFileSync('powershell.exe',['-NoProfile','-File',resolve('tests/create-ocr-fixture.ps1'),'-Path',fixture],{windowsHide:true});
+let browser:Awaited<ReturnType<typeof chromium.launch>>|undefined;const errors:string[]=[];
+try{
+  browser=await chromium.launch({headless:true});const context=await browser.newContext({viewport:{width:1104,height:681},permissions:['clipboard-read','clipboard-write']});const page=await context.newPage();page.setDefaultTimeout(20000);page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(origin);await page.getByLabel('密码',{exact:true}).fill('Workbox-Local-Dev-2026!');await page.getByRole('button',{name:'登录',exact:true}).click();
+  const end=page.getByRole('button',{name:'结束运行小羊电脑信息',exact:true});await end.waitFor();
+  await page.getByRole('button',{name:'深色',exact:true}).click();await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
+  assert.equal(await end.locator('.app-running-label').isVisible(),true);await end.hover();assert.equal(await end.locator('.app-end-label').isVisible(),true);assert.equal(await end.locator('.app-running-label').isVisible(),false);assert.equal(await page.locator('.app-stop').count(),0);await page.waitForTimeout(250);
+  await page.screenshot({path:join(run,'launcher-hover-dark.png'),fullPage:true});await end.click();await page.getByRole('button',{name:'开始小羊电脑信息',exact:true}).waitFor();assert.equal(closes,1);assert.equal(launched,0);
+  await page.getByRole('button',{name:'开始小羊电脑信息',exact:true}).click();await page.getByRole('button',{name:'结束运行小羊电脑信息',exact:true}).waitFor();assert.equal(launched,1);
+  await page.goto(origin+'/?window=images');await page.getByRole('button',{name:'格式转换',exact:true}).click();await page.getByLabel('添加图片文件').setInputFiles(fixture);await page.getByText('1 张 · 已选 1 张',{exact:true}).waitFor();await page.getByRole('button',{name:'文字识别',exact:true}).click();
+  const dialog=page.getByRole('dialog',{name:'文字识别',exact:true});await dialog.waitFor();await page.getByLabel('文字版面').selectOption('block');await page.getByRole('button',{name:'开始识别',exact:true}).click();await page.waitForFunction(()=>document.querySelector<HTMLTextAreaElement>('[aria-label="识别结果"]')?.value.includes('WORKBOX OCR 2026'));
+  assert.match((await page.getByLabel('识别结果').inputValue()).replace(/\s/g,''),/小羊文字识别测试/);await page.getByRole('button',{name:'复制文字',exact:true}).click();assert.match(await page.evaluate(()=>navigator.clipboard.readText()),/WORKBOX/);
+  await page.screenshot({path:join(run,'ocr-dark.png'),fullPage:true});await page.getByRole('button',{name:'关闭文字识别',exact:true}).click();
+  await page.getByRole('button',{name:'浅色',exact:true}).click();await page.getByRole('button',{name:'照片库',exact:true}).click();await page.getByLabel('导入照片文件').setInputFiles(fixture);await page.waitForFunction(()=>{const b=Array.from(document.querySelectorAll('button')).find(b=>b.textContent==='文字识别');return b&&!b.disabled});await page.getByRole('button',{name:'文字识别',exact:true}).click();await page.getByText('识别当前显影预览',{exact:true}).waitFor();await page.getByRole('button',{name:'开始识别',exact:true}).click();await page.waitForFunction(()=>document.querySelector<HTMLTextAreaElement>('[aria-label="识别结果"]')?.value.includes('WORKBOX'));
+  await page.screenshot({path:join(run,'ocr-photo-light.png'),fullPage:true});await page.getByRole('button',{name:'关闭文字识别',exact:true}).click();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.goto(origin);await page.getByRole('button',{name:'截图',exact:true}).click();assert.equal(await page.getByRole('button',{name:'文字识别',exact:true}).isDisabled(),true);
+  assert.deepEqual(errors,[]);writeFileSync(join(run,'results.json'),JSON.stringify({checks:['single app button hover/close/restart with deterministic controller','real bilingual OCR and clipboard','photo rendered preview OCR','screenshot toolbar entry always present','minimum window light/dark, zero browser errors'],errors},null,2));console.log('Integration UI passed: '+run);
+}catch(e){const page=browser?.contexts()[0]?.pages()[0];if(page){await page.screenshot({path:join(run,'failure.png'),fullPage:true});console.log((await page.locator('body').innerText()).slice(-3000));}throw e;}finally{await browser?.close();await app.close();}

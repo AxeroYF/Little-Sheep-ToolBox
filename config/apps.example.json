@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "apps": [
+    {
+      "id": "my-desktop-app",
+      "name": "我的应用",
+      "description": "",
+      "category": "常用工具",
+      "platform": "windows",
+      "version": null,
+      "integration": "external",
+      "lifecycle": { "detection": "process" },
+      "entry": { "type": "executable", "path": "C:\\Tools\\MyApp\\MyApp.exe", "args": [] }
+    }
+  ]
+}

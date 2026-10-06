@@ -1,0 +1,132 @@
+.ocr-dialog {
+  width: min(880px, calc(100vw - 64px));
+  height: min(620px, calc(100dvh - 90px));
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--text);
+  background: var(--panel);
+  box-shadow: 0 24px 90px #0005;
+}
+.ocr-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.ocr-dialog::backdrop {
+  background: #0007;
+}
+.ocr-dialog header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.ocr-dialog header strong {
+  font-size: 14px;
+  white-space: nowrap;
+}
+.ocr-dialog header span {
+  font-size: 11px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ocr-dialog header button {
+  margin-left: auto;
+  background: none;
+  color: var(--muted);
+  padding: 4px;
+}
+.ocr-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+}
+.ocr-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.ocr-controls select {
+  background: var(--panel-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.ocr-controls small {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 10px;
+}
+.ocr-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  padding: 0 18px;
+}
+.ocr-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel-soft);
+  overflow: auto;
+  min-height: 0;
+}
+.ocr-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.ocr-content textarea {
+  font-family: inherit;
+  resize: none;
+  width: 100%;
+  min-width: 0;
+  line-height: 1.8;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px;
+  background: var(--panel-soft);
+  color: var(--text);
+  font-size: 13px;
+}
+.ocr-dialog footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+}
+.ocr-dialog footer span {
+  flex: 1;
+  color: var(--muted);
+  font-size: 11px;
+}
+.ocr-dialog footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 8px 14px;
+}
+.ocr-dialog .secondary {
+  background: var(--panel-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.ocr-error {
+  margin: 0 18px 10px;
+  color: var(--red);
+  font-size: 12px;
+}

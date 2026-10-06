@@ -1,0 +1,697 @@
+.computer-app {
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: calc(100dvh - 70px);
+  overflow: auto;
+  min-height: 0;
+}
+.computer-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.computer-toolbar button {
+  font-size: 12px;
+  min-height: 32px;
+}
+.computer-tabs {
+  display: flex;
+  gap: 4px;
+  margin-right: auto;
+  background: var(--panel-soft);
+  padding: 4px;
+  border-radius: 10px;
+}
+.computer-tabs button {
+  padding: 7px 12px;
+  background: none;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.computer-tabs button[aria-pressed="true"] {
+  background: var(--blue);
+  color: white;
+}
+.computer-live {
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.computer-live:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.computer-live.live:before {
+  background: var(--green);
+}
+.computer-device {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 0 2px;
+}
+.computer-device > div {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.computer-device > div:last-child {
+  text-align: right;
+  flex-shrink: 0;
+}
+.computer-device strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.computer-device span,
+.computer-device small {
+  font-size: 11px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.computer-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  flex-shrink: 0;
+}
+.computer-card,
+.computer-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  min-width: 0;
+  padding: 16px;
+}
+.computer-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.computer-card-title > small {
+  margin-left: auto;
+  font-size: 10px;
+}
+.computer-reading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+.computer-reading > div {
+  min-width: 0;
+  display: grid;
+  gap: 9px;
+}
+.computer-reading strong {
+  font-size: 32px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.computer-reading strong small {
+  font-size: 12px;
+  padding-left: 5px;
+  font-weight: 400;
+}
+.computer-reading span {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.computer-gauge {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+}
+.computer-spark {
+  display: block;
+  width: 100%;
+  height: 67px;
+}
+.computer-grid {
+  fill: none;
+  stroke: var(--line);
+  stroke-dasharray: 3 5;
+  stroke-width: 1;
+}
+.computer-bottom {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: 13px;
+  min-height: 185px;
+  flex: 1;
+}
+.computer-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.computer-panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.computer-panel-title small,
+.computer-panel > small {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.computer-app select {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel-soft);
+  color: var(--text);
+  padding: 6px 9px;
+  max-width: 240px;
+  font-size: 11px;
+}
+.computer-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  flex: 1;
+  margin-top: 12px;
+}
+.computer-dual > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.computer-dual span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--muted);
+}
+.computer-dual strong {
+  font-size: 22px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.computer-dual .computer-spark {
+  flex: 1;
+  max-height: 92px;
+  min-height: 40px;
+}
+.computer-disk-rate {
+  display: flex;
+  gap: 26px;
+  font-size: 10px;
+  color: var(--muted);
+  padding: 9px 0 15px;
+  border-bottom: 1px solid var(--line);
+}
+.computer-disk-rate span {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.computer-disk-rate strong {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 550;
+}
+.computer-drives {
+  overflow: auto;
+  margin-top: 9px;
+  flex: 1;
+}
+.computer-drives > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 0;
+  font-size: 11px;
+}
+.computer-drives b {
+  font-weight: 500;
+}
+.computer-drives svg {
+  color: var(--muted);
+}
+.computer-drives progress {
+  flex: 1;
+  width: 40px;
+  height: 5px;
+  accent-color: var(--blue);
+}
+.computer-drives small {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.computer-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.computer-error {
+  background: #d44a4a0b;
+  border: 1px solid #dc454540;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: var(--red);
+}
+.computer-settings {
+  display: grid;
+  grid-template-columns: minmax(370px, 1fr) minmax(350px, 1fr);
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+.computer-settings-form,
+.computer-overlay-preview {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  padding: 22px;
+  overflow: auto;
+}
+.computer-settings-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+}
+.computer-settings h2 {
+  font-size: 15px;
+}
+.computer-settings-form > label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+}
+.computer-settings-form > label select {
+  margin-left: auto;
+  width: 230px;
+  max-width: none;
+}
+.computer-settings-form > label > input[type="range"] {
+  accent-color: var(--blue);
+  flex: 1;
+  padding: 0;
+}
+.computer-settings-form output {
+  color: var(--muted);
+  font-size: 11px;
+}
+.computer-settings-form .primary {
+  align-self: flex-start;
+  font-size: 12px;
+  padding: 9px 24px;
+}
+.computer-checkbox input {
+  accent-color: var(--blue);
+  width: 15px;
+  height: 15px;
+}
+.computer-shortcut {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+}
+.computer-shortcut > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.computer-shortcut .secondary {
+  font-size: 11px;
+}
+.computer-shortcut kbd,
+.computer-recorder {
+  padding: 9px 13px;
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  min-width: 170px;
+  font-size: 12px;
+}
+.computer-shortcut small,
+.computer-settings-form > small {
+  font-size: 11px;
+}
+.computer-recorder {
+  outline: 2px solid var(--blue);
+}
+.computer-overlay-preview strong {
+  font-size: 13px;
+}
+.computer-preview-strip {
+  display: flex;
+  gap: 22px;
+  margin: 22px 0;
+  padding: 18px 16px;
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  background: #171a1f;
+  color: #edf4fc;
+  font-size: 12px;
+}
+.computer-overlay-preview p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 12px;
+}
+@media (max-height: 760px) {
+  .computer-app {
+    padding: 12px 18px;
+    gap: 11px;
+  }
+  .computer-card,
+  .computer-panel {
+    padding: 12px;
+  }
+  .computer-reading {
+    margin: 8px 0 1px;
+  }
+  .computer-reading strong {
+    font-size: 28px;
+  }
+  .computer-spark {
+    height: 52px;
+  }
+  .computer-bottom {
+    min-height: 175px;
+  }
+  .computer-settings-form {
+    gap: 16px;
+    padding: 18px;
+  }
+}
+@media (max-width: 1130px) {
+  .computer-reading span {
+    font-size: 9px;
+  }
+  .computer-gauge {
+    width: 52px;
+    height: 52px;
+  }
+  .computer-card-title > small {
+    font-size: 9px;
+  }
+  .computer-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+  .computer-panel-title select {
+    max-width: 200px;
+  }
+}
+
+.computer-app .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--panel-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 12px;
+}
+.hardware-detail-button {
+  background: none;
+  color: var(--blue);
+  font-size: 11px;
+  padding: 3px 6px;
+}
+.hardware-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 8px;
+}
+.hardware-categories {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.hardware-categories button {
+  background: var(--panel-soft);
+  color: var(--muted);
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+}
+.hardware-categories button[aria-pressed="true"] {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+.hardware-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  min-width: 0;
+}
+.hardware-heading strong {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.hardware-heading span,
+.hardware-heading small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.hardware-heading select {
+  margin-left: auto;
+}
+.hardware-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px 20px;
+  margin: 18px 0 8px;
+}
+.hardware-fields div {
+  min-width: 0;
+}
+.hardware-fields dt {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.hardware-fields dd {
+  font-size: 12px;
+  margin: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+.hardware-processors {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.hardware-processors .computer-panel {
+  padding: 10px 12px;
+}
+.hardware-processors .computer-panel > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  gap: 8px;
+}
+.hardware-processors strong {
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+.hardware-processors .computer-spark {
+  height: 48px;
+  margin-top: 7px;
+}
+.hardware-device-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.hardware-device-grid .hardware-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.hardware-sensors {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hardware-sensor-group {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.hardware-sensor-group summary {
+  cursor: pointer;
+  padding: 13px 16px;
+  font-size: 12px;
+}
+.hardware-sensor-group summary small {
+  float: right;
+  color: var(--muted);
+}
+.hardware-sensor-group table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  table-layout: fixed;
+}
+.hardware-sensor-group th,
+.hardware-sensor-group td {
+  padding: 9px 14px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.hardware-sensor-group th {
+  font-weight: 500;
+  color: var(--muted);
+}
+.hardware-sensor-group th:first-child,
+.hardware-sensor-group td:first-child {
+  width: 34%;
+  text-align: left;
+}
+.hardware-sensor-link {
+  background: none;
+  color: var(--text);
+  padding: 0;
+  text-align: left;
+  font-size: 11px;
+}
+.hardware-sensor-link:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+.hardware-trend .computer-spark {
+  height: 90px;
+}
+.hardware-note,
+.hardware-empty {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.hardware-empty {
+  padding: 10px 0;
+}
+.hardware-note {
+  margin-top: 7px;
+}
+.hardware-volumes > div {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(100px, 2fr) minmax(190px, 2fr);
+  gap: 18px;
+  align-items: center;
+  font-size: 11px;
+  margin-top: 16px;
+}
+.hardware-volumes progress {
+  width: 100%;
+  height: 6px;
+  accent-color: var(--blue);
+}
+.hardware-volumes span {
+  text-align: right;
+  color: var(--muted);
+}
+.power-total {
+  font-size: 44px;
+  font-weight: 550;
+  margin: 24px 0 5px;
+}
+.power-total small {
+  font-size: 15px;
+  font-weight: 400;
+}
+.power-main .computer-spark {
+  height: 95px;
+  margin: 16px 0;
+}
+.power-parts {
+  margin-top: 10px;
+}
+.power-parts > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+  font-size: 12px;
+}
+.power-parts > div:last-child {
+  border: 0;
+}
+.power-parts span {
+  display: grid;
+  gap: 6px;
+}
+.power-parts small {
+  color: var(--muted);
+  font-size: 10px;
+}
+.power-settings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 20px 0;
+}
+.power-settings label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.power-settings input {
+  background: var(--panel-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  width: 90px;
+  padding: 7px 9px;
+}
+.power-save {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  font-size: 12px;
+}
+.power-save .primary {
+  padding: 9px 16px;
+}
+.power-save span {
+  color: var(--muted);
+}
